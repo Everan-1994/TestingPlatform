@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    'middleware' => ['cors'] // 防跨域
+], function ($router) {
+
+    // 前端接口
+    $router->group([
+        'namespace' => 'Api' // 命名空间
+    ], function ($router) {
+        // 用户登录
+        $router->post('login', 'UserAuthController@login');
+
+        $router->group(['middleware' => ['auth:api,user']], function ($router) {
+            // 退出登陆
+            $router->delete('logout', 'UserAuthController@logout');
+        });
+    });
+
 });
