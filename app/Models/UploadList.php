@@ -13,4 +13,14 @@ class UploadList extends Model
 
     protected $fillable = ['user_id', 'ss_name', 'sample_num'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'upload_list_id', 'id');
+    }
+
 }

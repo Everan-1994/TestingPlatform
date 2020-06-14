@@ -32,7 +32,10 @@ class SampleController extends BaseController
             ];
         } else {
             $type = 1; // 第一次扫码
-            $upload_list = [];
+            $upload_list = [
+                'id' => '',
+                'created_at' => ''
+            ];
         }
 
         return $this->success(compact('type', 'upload_list'));

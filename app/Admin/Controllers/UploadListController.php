@@ -2,14 +2,25 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Report;
 use App\Models\UploadList;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
+use Dcat\Admin\IFrameGrid;
+use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Widgets\Box;
 
 class UploadListController extends AdminController
 {
+    public function index(Content $content)
+    {
+        Admin::script($this->uploadListDetail());
+
+        return $content->full()->body($this->grid());
+    }
+
     /**
      * Make a grid builder.
      *
@@ -17,38 +28,45 @@ class UploadListController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new UploadList(), function (Grid $grid) {
+        return Grid::make(UploadList::with('user'), function (Grid $grid) {
+
+            $grid->model()->where('sample_num', '=', request()->query('sample_num'));
+
             $grid->id->sortable();
-            $grid->user_id;
-            $grid->ss_name;
-            $grid->sample_id;
-            $grid->created_at;
-            $grid->updated_at->sortable();
-        
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
+            $grid->column('user.name', '取样人员');
+            $grid->ss_name->editable();
+            $grid->created_at->sortable();
+
+            $grid->disableCreateButton();
+            $grid->disableFilter();
+            $grid->disableEditButton();
+
+            $grid->actions(function ($actions) {
+                $id = $actions->row->id;
+
+                $actions->prepend('<a href="javascript:;" class="upload_list_detail" data-url="' . route('admin.upload_list.show', ['id' => $id]) . '" ><i class="fa fa-paper-plane-o"></i> 详情</a>');
+
+                $actions->disableView();
             });
         });
     }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
+    protected function uploadListDetail()
     {
-        return Show::make($id, new UploadList(), function (Show $show) {
-            $show->id;
-            $show->user_id;
-            $show->ss_name;
-            $show->sample_id;
-            $show->created_at;
-            $show->updated_at;
-        });
+
+        return <<<JS
+$('.upload_list_detail').on('click', function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2,
+      title: '报告详情',
+      shadeClose: true,
+      shade: 0.8,
+      area: ['94%', '95%'],
+      content: url
+    });
+});
+JS;
     }
 
     /**
@@ -60,12 +78,21 @@ class UploadListController extends AdminController
     {
         return Form::make(new UploadList(), function (Form $form) {
             $form->display('id');
-            $form->text('user_id');
             $form->text('ss_name');
-            $form->text('sample_id');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
         });
+    }
+
+    public function show($id, Content $content)
+    {
+        return $content->full()
+            ->body(Box::make('基础信息', '内容'))
+            ->body(Box::make('样本信息', IFrameGrid::make(Report::with(['device', 'project']), function (Grid $grid) use ($id) {
+                $grid->model()->where('upload_list_id', '=', $id);
+                $grid->column('id', '序号');
+                $grid->column('project.name', '项目');
+                $grid->column('device.name', '设备仪器');
+                $grid->column('content', '样本检测报告')->limit(30, '...');
+                $grid->column('created_at', '操作时间');
+            })));
     }
 }

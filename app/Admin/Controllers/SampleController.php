@@ -5,15 +5,25 @@ namespace App\Admin\Controllers;
 use App\Models\Device;
 use App\Models\Project;
 use App\Models\Sample;
+use Dcat\Admin\Admin;
+use Dcat\Admin\Layout\Content;
 use SimpleSoftwareIO\QrCode;
-use Dcat\Admin\Actions\Action;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 
 class SampleController extends AdminController
 {
+    public function index(Content $content)
+    {
+        Admin::script($this->uploadList());
+
+        return $content
+            ->header('样品')
+            ->description('列表')
+            ->body($this->grid());
+    }
+
     /**
      * @return Grid
      */
@@ -36,6 +46,11 @@ class SampleController extends AdminController
             })->image('', 100, 100);
 
             $grid->actions(function ($actions) {
+                $sample_num = $actions->row->sample_num;
+                $name = $sample_num . '-' . $actions->row->sample_name;
+
+                $actions->prepend('<a href="javascript:;" class="upload_list" data-id="' . $sample_num . '" data-name="' . $name . '" ><i class="fa fa-paper-plane-o"></i> 上传列表</a>');
+
                 $actions->disableView();
             });
 
@@ -46,6 +61,25 @@ class SampleController extends AdminController
 
             });
         });
+    }
+
+    protected function uploadList()
+    {
+        $url = route('admin.upload_list.index');
+        return <<<JS
+$('.upload_list').on('click', function () {
+    var sample_num = $(this).data('id')
+    var name = $(this).data('name')
+    layer.open({
+      type: 2,
+      title: name,
+      shadeClose: true,
+      shade: 0.8,
+      area: ['90%', '80%'],
+      content: "$url?sample_num=" + sample_num
+    });
+});
+JS;
     }
 
     /**

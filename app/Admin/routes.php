@@ -30,6 +30,15 @@ Route::group([
     $router->put('/sample/{id}', 'SampleController@update');
     $router->delete('/sample/{id}', 'SampleController@destroy');
 
+    // 上传列表
+    $router->get('/upload_list', 'UploadListController@index')->name('admin.upload_list.index');
+    $router->get('/upload_list/{id}', 'UploadListController@show')->name('admin.upload_list.show');
+    $router->put('/upload_list/{id}', 'UploadListController@update');
+    $router->delete('/upload_list/{id}', 'UploadListController@destroy');
+
+    // 报告内容编辑
+    $router->put('/report/{id}', 'ReportController@update');
+
     // 设备
     $router->get('/device', 'DeviceController@index');
     $router->get('/device/create', 'DeviceController@create');
