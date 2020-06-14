@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('employee_id', 6)->unique()->comment('员工工号');
             $table->tinyInteger('sex')->default(0)->comment('性别:0未知1男2女');
             $table->tinyInteger('status')->default(1)->comment('状态:0禁用1正常');
+            $table->string('avatar')->default('')->comment('头像');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

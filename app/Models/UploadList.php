@@ -10,6 +10,7 @@ class UploadList extends Model
 {
 	use HasDateTimeFormatter;
     protected $table = 'upload_lists';
-    
+
+    protected $fillable = ['user_id', 'ss_name', 'sample_num'];
 
 }

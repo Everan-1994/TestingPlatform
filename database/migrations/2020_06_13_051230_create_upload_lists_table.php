@@ -18,7 +18,7 @@ class CreateUploadListsTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('员工id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('ss_name', 50)->default('')->comment('送样人员名称');
-            $table->unsignedBigInteger('sample_id')->comment('样本id');
+            $table->string('sample_num', 64)->index()->default('')->comment('样本编号');
             $table->timestamps();
         });
     }

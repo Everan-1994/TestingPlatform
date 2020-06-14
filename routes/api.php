@@ -26,6 +26,18 @@ Route::group([
         $router->post('login', 'UserAuthController@login');
 
         $router->group(['middleware' => ['auth:api,user']], function ($router) {
+            // 更新信息
+            $router->put('update/info', 'UserAuthController@updateInfo');
+            // 取样
+            $router->get('sample', 'SampleController@index');
+            // 取样下一步
+            $router->post('sample/next', 'SampleController@nextStep');
+            // 提交报告
+            $router->post('report', 'SampleController@report');
+            // 项目
+            $router->get('project', 'ProjectController@index');
+            // 设备
+            $router->get('device', 'DeviceController@index');
             // 退出登陆
             $router->delete('logout', 'UserAuthController@logout');
         });
