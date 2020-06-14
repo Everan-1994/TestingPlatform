@@ -1,7 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'SuppliesArrival' => 'SuppliesArrival',
+        'SuppliesArrival' => '到货记录',
+        'suppliesArrival' => '到货记录',
     ],
     'fields' => [
         'supplies_id' => '物资id',

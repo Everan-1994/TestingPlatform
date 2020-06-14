@@ -18,7 +18,7 @@ class CreateSuppliesReceivesTable extends Migration
             $table->unsignedBigInteger('supplies_id')->comment('物资id');
             $table->foreign('supplies_id')->references('id')->on('supplies')->onDelete('cascade');
             $table->unsignedInteger('stock')->comment('物品库存');
-            $table->unsignedInteger('add_stock')->comment('到货数量');
+            $table->unsignedInteger('sub_stock')->comment('领用数量');
             $table->timestamps();
         });
     }

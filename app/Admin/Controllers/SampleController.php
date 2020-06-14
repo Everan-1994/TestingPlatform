@@ -28,34 +28,13 @@ class SampleController extends AdminController
             $grid->weather;
             $grid->created_at;
             $grid->updated_at->sortable();
-        
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
-            });
-        });
-    }
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new Sample(), function (Show $show) {
-            $show->id;
-            $show->sample_num;
-            $show->sample_name;
-            $show->device_id;
-            $show->unit_name;
-            $show->site_name;
-            $show->receive_at;
-            $show->weather;
-            $show->created_at;
-            $show->updated_at;
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->panel();
+                $filter->like('sample_num')->width(2);
+                $filter->like('sample_name')->width(2);
+
+            });
         });
     }
 
@@ -70,12 +49,13 @@ class SampleController extends AdminController
             $form->display('id');
             $form->text('sample_num');
             $form->text('sample_name');
+            $form->multipleSelect('form2.multiple-select', 'multiple select')->options();
             $form->text('device_id');
             $form->text('unit_name');
             $form->text('site_name');
             $form->text('receive_at');
             $form->text('weather');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });

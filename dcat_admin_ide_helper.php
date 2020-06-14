@@ -69,6 +69,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection stock
      * @property Grid\Column|Collection supplies_id
      * @property Grid\Column|Collection add_stock
+     * @property Grid\Column|Collection sub_stock
      * @property Grid\Column|Collection ss_name
      *
      * @method Grid\Column|Collection id(string $label = null)
@@ -267,19 +268,19 @@ namespace Dcat\Admin {
 
 namespace Dcat\Admin\Grid {
     /**
-     
+
      */
     class Column {}
 
     /**
-     
+
      */
     class Filter {}
 }
 
 namespace Dcat\Admin\Show {
     /**
-     
+
      */
     class Field {}
 }

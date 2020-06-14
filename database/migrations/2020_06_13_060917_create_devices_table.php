@@ -15,7 +15,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64)->default('')->comment('项目名称');
+            $table->string('name', 64)->default('')->comment('设备名称');
             $table->timestamps();
         });
     }

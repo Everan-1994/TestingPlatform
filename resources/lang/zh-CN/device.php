@@ -1,10 +1,11 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'Device' => 'Device',
+        'Device' => '设备',
+        'device' => '设备',
     ],
     'fields' => [
-        'name' => '项目名称',
+        'name' => '设备名称',
     ],
     'options' => [
     ],

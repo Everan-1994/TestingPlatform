@@ -1,7 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'Sample' => 'Sample',
+        'Sample' => '样品',
+        'sample' => '样品',
     ],
     'fields' => [
         'sample_num' => '样本编号',

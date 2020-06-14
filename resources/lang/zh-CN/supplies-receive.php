@@ -1,12 +1,13 @@
 <?php
 return [
     'labels' => [
-        'SuppliesReceive' => 'SuppliesReceive',
+        'SuppliesReceive' => '领用记录',
+        'suppliesReceive' => '领用记录',
     ],
     'fields' => [
         'supplies_id' => '物资id',
         'stock' => '物品库存',
-        'add_stock' => '到货数量',
+        'sub_stock' => '领用数量',
     ],
     'options' => [
     ],

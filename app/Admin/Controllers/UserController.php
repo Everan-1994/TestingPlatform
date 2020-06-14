@@ -30,8 +30,13 @@ class UserController extends AdminController
             $grid->created_at->sortable();
 
             $grid->actions(function ($actions) {
+                $actions->disableEdit();
                 $actions->disableView();
             });
+
+            $grid->showQuickEditButton();
+            $grid->enableDialogCreate();
+
             $grid->tools(function ($tools) {
                 // 禁用批量删除按钮
                 $tools->batch(function ($batch) {
@@ -90,7 +95,7 @@ class UserController extends AdminController
                         'unique' => '该工号已存在'
                     ])
                 ->updateRules(['required', "unique:users,employee_id,$id"], ['工号信息不能为空', '该工号已存在']);
-            $form->radio('sex')->options(User::$sexs)->width(2)->default(User::MALE);
+            $form->radio('sex')->options(User::$sexs)->default(User::MALE);
             $form->switch('status', '状态')->saving(function ($v) {
                 return $v ? User::STATUS_1 : User::STATUS_0;
             })->default(User::STATUS_1);
@@ -99,6 +104,7 @@ class UserController extends AdminController
 
             $form->display('created_at');
             $form->display('updated_at');
+
         })->saving(function (Form $form) {
             if ($form->password && $form->model()->get('password') != $form->password) {
                 $form->password = bcrypt($form->password);
@@ -108,7 +114,11 @@ class UserController extends AdminController
                 $form->deleteInput('password');
             }
 
-            if ($form->email && $form->model()->get('email') != $form->email) {
+            if ($form->username && $form->model()->get('username') != $form->username) {
+                $form->email = $form->input('username') . '@qq.com';
+            }
+
+            if ($form->isCreating()) {
                 $form->email = $form->input('username') . '@qq.com';
             }
         });

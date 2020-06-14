@@ -20,30 +20,21 @@ class ProjectController extends AdminController
         return Grid::make(new Project(), function (Grid $grid) {
             $grid->id->sortable();
             $grid->name;
-            $grid->created_at;
-            $grid->updated_at->sortable();
-        
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
-            });
-        });
-    }
+            $grid->created_at->sortable();
 
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     *
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        return Show::make($id, new Project(), function (Show $show) {
-            $show->id;
-            $show->name;
-            $show->created_at;
-            $show->updated_at;
+            $grid->actions(function ($actions) {
+                $actions->disableEdit();
+                $actions->disableView();
+            });
+
+            $grid->setDialogFormDimensions('600px', '450px');
+            $grid->showQuickEditButton();
+            $grid->enableDialogCreate();
+
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->panel();
+                $filter->like('name')->width(3);
+            });
         });
     }
 
@@ -57,7 +48,7 @@ class ProjectController extends AdminController
         return Form::make(new Project(), function (Form $form) {
             $form->display('id');
             $form->text('name');
-        
+
             $form->display('created_at');
             $form->display('updated_at');
         });

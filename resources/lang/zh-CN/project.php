@@ -1,7 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'Project' => 'Project',
+        'Project' => '项目',
+        'project' => '项目',
     ],
     'fields' => [
         'name' => '项目名称',
