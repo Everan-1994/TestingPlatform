@@ -72,7 +72,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/eaac909da3ccc32b748a65b127acd8918f58d9b0",
             "reference": "eaac909da3ccc32b748a65b127acd8918f58d9b0",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "dasprid/enum": "^1.0",
@@ -109,6 +115,83 @@
         ],
         "description": "BaconQrCode is a QR code generator for PHP.",
         "homepage": "https://github.com/Bacon/BaconQrCode"
+    },
+    {
+        "name": "box/spout",
+        "version": "v3.1.0",
+        "version_normalized": "3.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/box/spout.git",
+            "reference": "7964dadc2128f3a00ffa393395b618ea115c8032"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/box/spout/zipball/7964dadc2128f3a00ffa393395b618ea115c8032",
+            "reference": "7964dadc2128f3a00ffa393395b618ea115c8032",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "ext-xmlreader": "*",
+            "ext-zip": "*",
+            "php": ">=7.1.0"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2",
+            "phpunit/phpunit": "^7"
+        },
+        "suggest": {
+            "ext-iconv": "To handle non UTF-8 CSV files (if \"php-intl\" is not already installed or is too limited)",
+            "ext-intl": "To handle non UTF-8 CSV files (if \"iconv\" is not already installed)"
+        },
+        "time": "2019-12-02T21:21:41+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Box\\Spout\\": "src/Spout"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Adrien Loison",
+                "email": "adrien@box.com"
+            }
+        ],
+        "description": "PHP Library to read and write spreadsheet files (CSV, XLSX and ODS), in a fast and scalable way",
+        "homepage": "https://www.github.com/box/spout",
+        "keywords": [
+            "OOXML",
+            "csv",
+            "excel",
+            "memory",
+            "odf",
+            "ods",
+            "office",
+            "open",
+            "php",
+            "read",
+            "scale",
+            "spreadsheet",
+            "stream",
+            "write",
+            "xlsx"
+        ]
     },
     {
         "name": "brick/math",
@@ -177,7 +260,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
             "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require-dev": {
             "phpunit/phpunit": "^6.4",
@@ -206,6 +295,69 @@
         "keywords": [
             "enum",
             "map"
+        ]
+    },
+    {
+        "name": "dcat/easy-excel",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jqhph/easy-excel.git",
+            "reference": "cc805a2a8f811b0ee6f680954ce78ebfdc13f43b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jqhph/easy-excel/zipball/cc805a2a8f811b0ee6f680954ce78ebfdc13f43b",
+            "reference": "cc805a2a8f811b0ee6f680954ce78ebfdc13f43b",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "box/spout": "~3",
+            "league/flysystem": "~1",
+            "php": ">=7.1.0"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2",
+            "phpunit/phpunit": "~7|~8.0"
+        },
+        "time": "2020-05-24T05:18:57+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dcat\\EasyExcel\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "jqh",
+                "email": "841324345@qq.com"
+            }
+        ],
+        "description": "使用简单实用的语义化接口快速读写Excel文件",
+        "homepage": "https://github.com/jqhph/easy-excel",
+        "keywords": [
+            "box spout",
+            "csv",
+            "easy excel",
+            "excel",
+            "ods",
+            "office",
+            "read",
+            "spreadsheet",
+            "stream",
+            "xlsx"
         ]
     },
     {
@@ -4946,7 +5098,13 @@
             "type": "zip",
             "url": "https://api.github.com/repos/SimpleSoftwareIO/simple-qrcode/zipball/151dd397426d9a6c0507c96e61ddd2ca1290ce1e",
             "reference": "151dd397426d9a6c0507c96e61ddd2ca1290ce1e",
-            "shasum": ""
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
         },
         "require": {
             "bacon/bacon-qr-code": "2.0.0",

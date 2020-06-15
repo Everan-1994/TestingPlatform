@@ -32,7 +32,12 @@ class SupplyController extends AdminController
         return Grid::make(new Supply(), function (Grid $grid) {
             // 设置行操作为排列模式
             // $grid->setActionClass(Grid\Displayers\Actions::class);
-
+            $grid->export([
+                'id' => '序号',
+                'name' => '物资名称',
+                'stock' => '物资库存',
+                'created_at' => '创建时间'
+            ])->filename('物资列表'); // 导出
             $grid->id->sortable();
             $grid->name->editable();
             $grid->stock->editable();

@@ -25,7 +25,12 @@ class SuppliesReceiveController extends AdminController
         return Grid::make(new SuppliesReceive(), function (Grid $grid) {
             // 带参数查询
             $grid->model()->where('supplies_id', '=', request()->query('id'));
-
+            $grid->export([
+                'id' => '序号',
+                'stock' => '物资库存',
+                'sub_stock' => '领用数量',
+                'created_at' => '记录时间'
+            ])->filename('物资领用记录'); // 导出
             $grid->id->sortable();
             $grid->stock;
             $grid->sub_stock;
