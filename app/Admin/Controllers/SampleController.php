@@ -58,7 +58,8 @@ class SampleController extends AdminController
                 $filter->panel();
                 $filter->like('sample_num')->width(2);
                 $filter->like('sample_name')->width(2);
-
+                $filter->equal('projects.project_id', '项目')->width(2)->select(Project::all()->pluck('name', 'id'));
+                $filter->equal('device_id')->width(2)->select(Device::all()->pluck('name', 'id'));
             });
         });
     }
