@@ -14,6 +14,11 @@ class Report extends Model
 	    'user_id', 'upload_list_id', 'project_id', 'device_id', 'content'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+
     public function device()
     {
         return $this->hasOne(Device::class, 'id', 'device_id');

@@ -115,12 +115,13 @@ JS;
                     $show->width(4)->field('ss_name', '送样人员');
                 });
             }))
-            ->body(Box::make('样本信息', Grid::make(Report::with(['device', 'project']), function (Grid $grid) use ($id) {
+            ->body(Box::make('样本信息', Grid::make(Report::with(['user', 'device', 'project']), function (Grid $grid) use ($id) {
                 $grid->setActionClass(Grid\Displayers\Actions::class);
                 $grid->model()->where('upload_list_id', '=', $id);
                 $grid->column('id', '序号');
                 $grid->column('project.name', '项目');
                 $grid->column('device.name', '设备仪器');
+                $grid->column('user.name', '试验人员');
                 $grid->column('content', '样本检测报告')->limit(30, '...');
                 $grid->column('created_at', '操作时间');
 

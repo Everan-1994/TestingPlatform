@@ -28,13 +28,17 @@ class SampleController extends BaseController
             $upload_list = UploadList::query()->where('sample_num', '=', $request->input('sample_num'))->first();
             $upload_list = [
                 'id' => $upload_list->id,
-                'created_at' => $upload_list->created_at
+                'get_user' => $upload_list->user->name, // 取样人员
+                'created_at' => $upload_list->created_at, // 取样时间
+                'send_user' => $upload_list->ss_name, // 送样人员
             ];
         } else {
             $type = 1; // 第一次扫码
             $upload_list = [
                 'id' => '',
-                'created_at' => ''
+                'get_user' => '',
+                'created_at' => '',
+                'send_user'
             ];
         }
 
