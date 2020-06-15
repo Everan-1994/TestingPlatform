@@ -27,7 +27,7 @@ Route::group([
 
         $router->group(['middleware' => ['auth:api,user']], function ($router) {
             // 更新信息
-            $router->put('update/info', 'UserAuthController@updateInfo');
+            $router->post('update/info', 'UserAuthController@updateInfo');
             // 取样
             $router->get('sample', 'SampleController@index');
             // 取样下一步

@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Device extends Model
 {
-	use HasDateTimeFormatter;    
+	use HasDateTimeFormatter;
+
+    public function samples()
+    {
+        return $this->belongsToMany(Sample::class, 'sample_device', 'device_id', 'sample_id');
+    }
 }

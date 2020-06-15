@@ -115,10 +115,10 @@ class UserAuthController extends BaseController
                 // 将图片上传目标存储路径中
                 $fileUrl = $request->file('file')->store($folderName, 'admin');
                 // 更新个人信息
-                $user->avatar = '/' . $fileUrl;
+                $user->avatar = '/uploads/' . $fileUrl;
 
                 $res = [
-                    'avatar' => env('APP_URL') . '/' . $fileUrl
+                    'avatar' => env('APP_URL') . '/uploads/' . $fileUrl
                 ];
                 break;
             default:
