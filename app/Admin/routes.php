@@ -37,6 +37,7 @@ Route::group([
     $router->delete('/upload_list/{id}', 'UploadListController@destroy');
 
     // 报告内容编辑
+    $router->get('/report/{id}/edit', 'ReportController@edit')->name('admin.report.edit');
     $router->put('/report/{id}', 'ReportController@update');
 
     // 设备

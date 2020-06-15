@@ -23,4 +23,9 @@ class UploadList extends Model
         return $this->hasMany(Report::class, 'upload_list_id', 'id');
     }
 
+    public function sample()
+    {
+        return $this->belongsTo(Sample::class, 'sample_num', 'sample_num');
+    }
+
 }

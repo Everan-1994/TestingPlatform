@@ -19,11 +19,7 @@ class ReportController extends AdminController
     {
         return Form::make(new Report(), function (Form $form) {
             $form->display('id');
-            $form->text('user_id');
-            $form->text('upload_list_id');
-            $form->text('project_id');
-            $form->text('device_id');
-            $form->text('content');
+            $form->textarea('content');
 
             $form->display('created_at');
             $form->display('updated_at');

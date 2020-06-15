@@ -44,7 +44,7 @@ class UserAuthController extends BaseController
 
         $auth = [
             'info' => [
-                'avatar' => $user->avatar,
+                'avatar' => env('APP_URL') . $user->avatar,
                 'name' => $user->name,
                 'sex' => $user->sex,
                 'employee_id' => $user->employee_id
