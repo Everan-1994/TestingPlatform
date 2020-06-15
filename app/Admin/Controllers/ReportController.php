@@ -20,9 +20,6 @@ class ReportController extends AdminController
         return Form::make(new Report(), function (Form $form) {
             $form->display('id');
             $form->textarea('content');
-
-            $form->display('created_at');
-            $form->display('updated_at');
         });
     }
 }

@@ -20,6 +20,13 @@ class UserController extends AdminController
         return Grid::make(new User(), function (Grid $grid) {
             $grid->id->sortable();
             $grid->name;
+            $grid->column('avatar', '头像')->display(function ($avatar) {
+                if ($avatar) {
+                    return env('APP_URL') . '/uploads' . $avatar;
+                } else {
+                    return '/avatars/avatar' . rand(1, 5) . '.jpg';
+                }
+            })->image('', 57, 57);
             $grid->username;
             $grid->employee_id;
             $grid->sex->using(User::$sexs)->dot([
