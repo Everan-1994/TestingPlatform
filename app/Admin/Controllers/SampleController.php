@@ -29,12 +29,12 @@ class SampleController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(Sample::with(['device', 'projects']), function (Grid $grid) {
+        return Grid::make(Sample::with(['devices', 'projects']), function (Grid $grid) {
             $grid->id->sortable();
             $grid->sample_num;
             $grid->sample_name;
             $grid->projects()->pluck('name')->label();
-            $grid->column('device.name');
+            $grid->devices()->pluck('name')->label();
             $grid->unit_name;
             $grid->site_name;
             $grid->receive_at;
@@ -59,7 +59,7 @@ class SampleController extends AdminController
                 $filter->like('sample_num')->width(2);
                 $filter->like('sample_name')->width(2);
                 $filter->equal('projects.project_id', '项目')->width(2)->select(Project::all()->pluck('name', 'id'));
-                $filter->equal('device_id')->width(2)->select(Device::all()->pluck('name', 'id'));
+                $filter->equal('devices.device_id', '设备')->width(2)->select(Device::all()->pluck('name', 'id'));
             });
         });
     }
@@ -90,7 +90,7 @@ JS;
      */
     protected function form()
     {
-        return Form::make(Sample::with(['device', 'projects']), function (Form $form) {
+        return Form::make(Sample::with(['devices', 'projects']), function (Form $form) {
             $id = $form->getKey();
             $form->display('id');
             $form->text('sample_num')->required(true)
@@ -105,7 +105,14 @@ JS;
                     return array_column($v, 'id');
                 })
                 ->required(true);
-            $form->select('device_id', '设备仪器')->options(Device::all()->pluck('name', 'id'))->required(true);
+            $form->multipleSelect('devices', '设备仪器')
+                ->options(Device::all()->pluck('name', 'id'))
+                ->customFormat(function ($v) {
+                    if (!$v) return [];
+                    // 这一步非常重要，需要把数据库中查出来的二维数组转化成一维数组
+                    return array_column($v, 'id');
+                })
+                ->required(true);
             $form->text('unit_name')->required(true);
             $form->text('site_name')->required(true);
             $form->datetime('receive_at')->required(true);
