@@ -30,7 +30,7 @@ use Illuminate\Support\Traits\Macroable;
  * @method $this expand($callbackOrButton = null)
  * @method $this table($titles = [])
  * @method $this select($options = [])
- * @method $this modal($title = '', \Closure $callback = null)
+ * @method $this modal($title = '', $callback = null)
  * @method $this showTreeInDialog($callbackOrNodes = null)
  * @method $this qrcode($formatter = null, $width = 150, $height = 150)
  * @method $this downloadable($server = '', $disk = null)
@@ -413,11 +413,7 @@ class Column
      */
     protected function formatLabel($label)
     {
-        if (! $label) {
-            $label = admin_trans_field($this->name);
-        }
-
-        $label = $label ?: $this->name;
+        $label = $label ?: admin_trans_field($this->name);
 
         return str_replace(['.', '_'], ' ', $label);
     }

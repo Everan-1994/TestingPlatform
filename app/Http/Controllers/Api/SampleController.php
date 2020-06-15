@@ -29,7 +29,7 @@ class SampleController extends BaseController
             $upload_list = [
                 'id' => $upload_list->id,
                 'get_user' => $upload_list->user->name, // 取样人员
-                'created_at' => $upload_list->created_at, // 取样时间
+                'created_at' => $upload_list->created_at->toDateTimeString(), // 取样时间
                 'send_user' => $upload_list->ss_name, // 送样人员
             ];
         } else {

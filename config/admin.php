@@ -75,7 +75,7 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => '检测平台 - 管理系统',
+    'title' => '检测平台',
 
     /*
     |--------------------------------------------------------------------------
@@ -312,6 +312,8 @@ return [
         'sidebar_collapsed' => false,
 
         'sidebar_dark' => false,
+
+        'dark_mode_switch' => false,
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',

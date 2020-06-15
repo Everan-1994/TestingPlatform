@@ -389,6 +389,12 @@
         color: $sidebar-dark-active-color;
         background: $sidebar-dark-active-bg;
       }
+      &:hover {
+        color: $sidebar-dark-hover-color;
+      }
+    }
+    i {
+      margin-right: .75rem;
     }
 
     // Hover and active states
@@ -396,7 +402,7 @@
     &:hover > .nav-link,
     & > .nav-link:focus  {
       background-color: $sidebar-dark-hover-bg;
-      color: $sidebar-dark-hover-color;
+      //color: $sidebar-dark-hover-color;
     }
 
     > .nav-link.active {

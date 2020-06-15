@@ -3,7 +3,6 @@
 namespace Dcat\Admin\Form;
 
 use Dcat\Admin\Admin;
-use Dcat\Admin\Contracts\UploadField;
 use Dcat\Admin\Form;
 use Dcat\Admin\Widgets\Form as WidgetForm;
 use Illuminate\Support\Arr;
@@ -327,9 +326,7 @@ class NestedForm
             $field->attribute(Builder::BUILD_IGNORE, true);
         }
 
-        if ($field instanceof UploadField) {
-            $field->setRelation($this->relationName, $this->key);
-        }
+        $field->setNestedFormRelation($this->relationName, $this->key);
 
         $field::collectAssets();
 
