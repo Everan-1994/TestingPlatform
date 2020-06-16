@@ -73,7 +73,7 @@ class SampleController extends BaseController
 
         return $this->success([
             'id' => $upload_list->id,
-            'created_at' => $upload_list->created_at
+            'created_at' => $upload_list->created_at->toDateTimeString()
         ]);
     }
 
