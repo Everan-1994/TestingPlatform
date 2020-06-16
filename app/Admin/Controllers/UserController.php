@@ -21,7 +21,7 @@ class UserController extends AdminController
             $grid->id->sortable();
             $grid->column('avatar', '头像')->display(function ($avatar) {
                 if ($avatar) {
-                    return $avatar;
+                    return env('APP_URL') . $avatar;
                 } else {
                     return '/avatars/avatar' . rand(1, 5) . '.jpg';
                 }
