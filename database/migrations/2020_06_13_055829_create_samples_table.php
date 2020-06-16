@@ -17,7 +17,6 @@ class CreateSamplesTable extends Migration
             $table->id();
             $table->string('sample_num', 64)->index()->default('')->comment('样本编号');
             $table->string('sample_name', 64)->default('')->comment('样本名称');
-            $table->unsignedInteger('device_id')->comment('设备仪器id');
             $table->string('unit_name', 50)->default('')->comment('单位名称');
             $table->string('site_name', 50)->default('')->comment('站点名称');
             $table->dateTime('receive_at')->comment('取样日期');

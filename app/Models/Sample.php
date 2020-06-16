@@ -10,9 +10,9 @@ class Sample extends Model
 {
     use HasDateTimeFormatter;
 
-    public function device()
+    public function devices()
     {
-        return $this->hasOne(Device::class, 'id', 'device_id');
+        return $this->belongsToMany(Device::class, 'sample_device', 'sample_id', 'device_id');
     }
 
     public function projects()
