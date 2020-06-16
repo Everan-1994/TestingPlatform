@@ -16,7 +16,7 @@ class DeviceController extends BaseController
                     $sql->where('sample_id', '=', $request->input('sample_id'));
                 });
             })
-            ->select('id', 'name')
+            ->select('id', 'name', 'device_num')
             ->latest()
             ->get();
 
