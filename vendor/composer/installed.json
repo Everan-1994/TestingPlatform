@@ -5495,8 +5495,8 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v5.1.1",
-        "version_normalized": "5.1.1.0",
+        "version": "v5.1.2",
+        "version_normalized": "5.1.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",

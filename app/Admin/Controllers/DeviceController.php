@@ -20,6 +20,9 @@ class DeviceController extends AdminController
         return Grid::make(new Device(), function (Grid $grid) {
             $grid->id->sortable();
             $grid->name;
+            $grid->column('device_num')->display(function ($device_num) {
+                return empty($device_num) ? '--' : $device_num;
+            });
             $grid->created_at->sortable();
 
             $grid->actions(function ($actions) {
@@ -48,6 +51,7 @@ class DeviceController extends AdminController
         return Form::make(new Device(), function (Form $form) {
             $form->display('id');
             $form->text('name');
+            $form->text('device_num');
 
             $form->display('created_at');
             $form->display('updated_at');

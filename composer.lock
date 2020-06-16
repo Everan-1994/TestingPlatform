@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "853312288e2731178f42658561b6220c",
+    "content-hash": "74032ad64ed290285de9c678fade83d1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3228,7 +3228,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",

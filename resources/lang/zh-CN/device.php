@@ -6,6 +6,7 @@ return [
     ],
     'fields' => [
         'name' => '设备名称',
+        'device_num' => '设备ID',
     ],
     'options' => [
     ],

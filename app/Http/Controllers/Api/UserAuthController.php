@@ -91,7 +91,7 @@ class UserAuthController extends BaseController
     public function updateInfo(Request $request)
     {
         if (!$request->filled('update_type')) {
-            return $this->fail(VALIDATION_ERROR);
+            return $this->fail(VALIDATION_ERROR, '111111');
         }
 
         $user = Auth::guard('api')->user();
@@ -99,13 +99,14 @@ class UserAuthController extends BaseController
         switch ($request->input('update_type')) {
             case 'avatar':
                 $validator = \Validator::make($request->all(), [
-                    'file'    => 'required'
+                    'file'    => 'required|image'
                 ], [
-                    'file.required'    => '请上传头像'
+                    'file.image'    => '请上传图片文件',
+                    'file.required'    => '请上传头像',
                 ]);
 
                 if ($validator->fails()) {
-                    return $this->fail(VALIDATION_ERROR);
+                    return $this->fail(VALIDATION_ERROR, '请上传图片文件');
                 }
 
                 // 构建存储的文件夹规则，如：articles/201810/10/
