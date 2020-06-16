@@ -31,6 +31,8 @@ class SampleController extends BaseController
                 'get_user' => $upload_list->user->name, // 取样人员
                 'created_at' => $upload_list->created_at->toDateTimeString(), // 取样时间
                 'send_user' => $upload_list->ss_name, // 送样人员
+                'sample_num' => $request->input('sample_num'), // 样品编号
+                'sample_name' => $upload_list->sample->sample_name // 样品名称
             ];
         } else {
             $type = 1; // 第一次扫码
@@ -38,7 +40,9 @@ class SampleController extends BaseController
                 'id' => '',
                 'get_user' => '',
                 'created_at' => '',
-                'send_user'
+                'send_user' => '',
+                'sample_num' => '',
+                'sample_name' => '',
             ];
         }
 
