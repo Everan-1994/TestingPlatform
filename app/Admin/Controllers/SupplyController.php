@@ -121,8 +121,8 @@ JS;
     {
         return Form::make(new Supply(), function (Form $form) {
             $form->display('id');
-            $form->text('name');
-            $form->text('stock');
+            $form->text('name')->required(true);
+            $form->text('stock')->required(true);
 
             $form->display('created_at');
             $form->display('updated_at');

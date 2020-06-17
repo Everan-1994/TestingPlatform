@@ -10,9 +10,9 @@ class ProjectController extends BaseController
     public function index(Request $request)
     {
         $list = Project::query()
-            ->when($request->filled('sample_id'), function ($query) use ($request) {
+            ->when($request->filled('sample_num'), function ($query) use ($request) {
                 $query->whereHas('samples', function ($sql) use ($request) {
-                    $sql->where('sample_id', '=', $request->input('sample_id'));
+                    $sql->where('sample_num', '=', $request->input('sample_num'));
                 });
             })
             ->select('id', 'name')

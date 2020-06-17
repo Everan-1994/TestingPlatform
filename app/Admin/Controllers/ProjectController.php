@@ -47,7 +47,7 @@ class ProjectController extends AdminController
     {
         return Form::make(new Project(), function (Form $form) {
             $form->display('id');
-            $form->text('name');
+            $form->text('name')->required(true);
 
             $form->display('created_at');
             $form->display('updated_at');

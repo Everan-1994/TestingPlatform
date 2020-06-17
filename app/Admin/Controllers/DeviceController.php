@@ -50,7 +50,7 @@ class DeviceController extends AdminController
     {
         return Form::make(new Device(), function (Form $form) {
             $form->display('id');
-            $form->text('name');
+            $form->text('name')->required(true);
             $form->text('device_num');
 
             $form->display('created_at');
