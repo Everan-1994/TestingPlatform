@@ -17,6 +17,7 @@ class SampleController extends AdminController
     public function index(Content $content)
     {
         Admin::script($this->uploadList());
+        Admin::script($this->qrcodePreview());
 
         return $content
             ->header('样品')
@@ -41,14 +42,14 @@ class SampleController extends AdminController
             $grid->weather;
             $grid->created_at->sortable();
 
-            // $grid->column('qrcode', '二维码')->display(function () {
-            //     return env('APP_URL') . $this->qrcode;
-            // })->image('', 100, 100);
-
             $grid->column('qrcode', '二维码')->display(function () {
-                $src = env('APP_URL') . $this->qrcode;
-                return '<img src="'.$src.'" class="preview-qrcode" style="max-width: 100px; data-sample-num='.$this->sample_num.' data-sample-name='.$this->sample_name.'"/>';
-            });
+                return env('APP_URL') . $this->qrcode;
+            })->image('', 100, 100);
+
+            // $grid->column('qrcode', '二维码')->display(function () {
+            //     $src = env('APP_URL') . $this->qrcode;
+            //     return '<img src="'.$src.'" class="preview-qrcode" style="max-width: 100px; data-sample-num='.$this->sample_num.' data-sample-name='.$this->sample_name.'"/>';
+            // });
 
             $grid->actions(function ($actions) {
                 $sample_num = $actions->row->sample_num;
