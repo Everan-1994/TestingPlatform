@@ -12,5 +12,12 @@ Grid::resolving(function (Grid $grid) {
 
 Form::resolving(function (Form $form) {
     $form->disableViewButton();
+    $form->disableViewCheck();
+    if ($form->isCreating()) {
+        $form->disableEditingCheck();
+    }
+    if ($form->isEditing()) {
+        $form->disableCreatingCheck();
+    }
 });
 
