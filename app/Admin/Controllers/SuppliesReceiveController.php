@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\SuppliesReceive;
+use App\Models\Supply;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Controllers\AdminController;
@@ -71,6 +72,16 @@ class SuppliesReceiveController extends AdminController
             if (request()->query('stock')) {
                 $form->stock = request()->query('stock');
             }
+
+            $stock = Supply::query()->where('id', '=', request()->query('supplies_id'))->value('stock');
+
+            if ($stock == 0 || $stock < $form->input('sub_stock')) {
+                return $form->error('库存不足');
+            }
+        })->saved(function (Form $form) {
+            $supply = Supply::query()->find(request()->query('supplies_id'));
+            $supply->stock -= $form->input('sub_stock');
+            $supply->save();
         });
     }
 }
