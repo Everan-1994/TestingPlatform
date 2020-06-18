@@ -122,7 +122,10 @@ JS;
         return Form::make(new Supply(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required(true);
-            $form->text('stock')->required(true)->rules('integer|min:0');
+            $form->text('stock')->required(true)->rules('integer|min:0', [
+                'integer' => '必须为数字',
+                'min'   => '必须为大于等于0的数量',
+            ]);
 
             $form->display('created_at');
             $form->display('updated_at');
