@@ -54,7 +54,7 @@ class SuppliesReceiveController extends AdminController
     {
         return Form::make(new SuppliesReceive(), function (Form $form) {
             $form->display('id');
-            $form->text('sub_stock')->required(true);
+            $form->text('sub_stock')->required(true)->rules('integer|min:1');
             // 设置提交的action
             if ($form->isCreating()) {
                 $supplies_id = request('supplies_id');

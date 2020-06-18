@@ -52,7 +52,7 @@ class SuppliesArrivalController extends AdminController
     {
         return Form::make(new SuppliesArrival(), function (Form $form) {
             $form->display('id');
-            $form->text('add_stock')->required(true);
+            $form->text('add_stock')->required(true)->rules('integer|min:1');
             // 设置提交的action
             if ($form->isCreating()) {
                 $supplies_id = request('supplies_id');
@@ -66,7 +66,7 @@ class SuppliesArrivalController extends AdminController
             if (request()->query('supplies_id')) {
                 $form->supplies_id = request()->query('supplies_id');
             }
-            if (request()->query('stock')) {
+            if (request()->query('stock') >= 0) {
                 $form->stock = request()->query('stock');
             }
         });

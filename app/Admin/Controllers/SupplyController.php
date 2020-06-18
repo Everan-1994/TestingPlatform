@@ -40,7 +40,7 @@ class SupplyController extends AdminController
             ])->filename('物资列表'); // 导出
             $grid->id->sortable();
             $grid->name->editable();
-            $grid->stock->editable();
+            $grid->stock->editable(true);
             $grid->created_at->sortable();
 
             $grid->actions(function ($actions) {
@@ -122,7 +122,7 @@ JS;
         return Form::make(new Supply(), function (Form $form) {
             $form->display('id');
             $form->text('name')->required(true);
-            $form->text('stock')->required(true);
+            $form->text('stock')->required(true)->rules('integer|min:0');
 
             $form->display('created_at');
             $form->display('updated_at');
