@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\SuppliesArrival;
+use App\Models\Supply;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Controllers\AdminController;
@@ -69,6 +70,10 @@ class SuppliesArrivalController extends AdminController
             if (request()->query('stock')) {
                 $form->stock = request()->query('stock');
             }
+        })->saved(function (Form $form) {
+            $supply = Supply::query()->find(request()->query('supplies_id'));
+            $supply->stock += $form->input('add_stock');
+            $supply->save();
         });
     }
 }
