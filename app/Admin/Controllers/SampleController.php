@@ -42,14 +42,14 @@ class SampleController extends AdminController
             $grid->weather;
             $grid->created_at->sortable();
 
-            $grid->column('qrcode', '二维码')->display(function () {
-                return env('APP_URL') . $this->qrcode;
-            })->image('', 100, 100);
-
             // $grid->column('qrcode', '二维码')->display(function () {
-            //     $src = env('APP_URL') . $this->qrcode;
-            //     return '<img src="'.$src.'" class="preview-qrcode" style="max-width: 100px; data-sample-num='.$this->sample_num.' data-sample-name='.$this->sample_name.'"/>';
-            // });
+            //     return env('APP_URL') . $this->qrcode;
+            // })->image('', 100, 100);
+
+            $grid->column('qrcode', '二维码')->display(function () {
+                $src = env('APP_URL') . $this->qrcode;
+                return '<img src="'.$src.'" class="preview-qrcode" style="max-width: 100px;" data-sample-num="'.$this->sample_num.'" data-sample-name="'.$this->sample_name.'"/>';
+            });
 
             $grid->actions(function ($actions) {
                 $sample_num = $actions->row->sample_num;
@@ -94,23 +94,16 @@ JS;
         return <<<JS
 $('.preview-qrcode').on('click', function () {
     var src = $(this).attr('src')
-    var sample_num = $(this).attr('sample-num')
-    var sample_name = $(this).attr('sample-name')
+    var sample_num = $(this).data('sample-num')
+    var sample_name = $(this).data('sample-name')
     layer.open({
-      photos: {
-          "title": "样本二维码", //相册标题
-          "id": sample_num, //相册id
-          "start": 0, //初始显示的图片序号，默认0
-          "data": [   //相册包含的图片，数组格式
-            {
-              "alt": sample_name,
-              "pid": sample_num, //图片id
-              "src": src, //原图地址
-              "thumb": src //缩略图地址
-            }
-         ]
-      },
-      anim: 5
+      type: 1,
+      title: sample_name + '['+ sample_num +']',
+      closeBtn: 1,
+      shade: 0.6,
+      area: ['350px', '300px'],
+      shadeClose: false,
+      content: '<div style="width:100%; line-height: 245px; text-align: center;"><img src="'+src+'" /></div>'
     });
 });
 JS;
