@@ -4,7 +4,7 @@
     @if ($grid->allowToolbar())
         <div class="custom-data-table-header">
             <div class="table-responsive">
-                <div class="top d-block" style="padding: 0">
+                <div class="top d-block clearfix p-0">
                 @if(!empty($title))
                     <h4 class="pull-left" style="margin:5px 10px 0;">
                         {!! $title !!}&nbsp;
@@ -32,12 +32,7 @@
     {!! $grid->renderHeader() !!}
 
     <div class="table-responsive table-wrapper">
-            <table
-                class="table custom-data-table dataTable dt-checkboxes-select
-                {{ $grid->option('table_class') }}
-                {{ $grid->option('show_bordered') ? 'table-bordered complex-headers' : '' }} "
-                id="{{ $tableId }}"
-            >
+            <table class="custom-data-table dataTable {{ $grid->formatTableClass() }}" id="{{ $tableId }}">
                 <thead>
                 @if ($headers = $grid->getComplexHeaders())
                     <tr>

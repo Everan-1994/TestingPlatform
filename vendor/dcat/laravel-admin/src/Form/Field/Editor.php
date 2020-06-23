@@ -163,7 +163,7 @@ class Editor extends Field
         return <<<JS
 function (editor) {
     editor.on('Change', function(e) {
-      $(replaceNestedFormIndex('#{$this->id}')).val(e.level.content);
+      $(replaceNestedFormIndex('#{$this->id}')).val(String(e.level.content).replace('<p><br data-mce-bogus="1"></p>', '').replace('<p><br></p>', ''));
     });
 }
 JS;

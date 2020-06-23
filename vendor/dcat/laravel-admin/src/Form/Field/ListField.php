@@ -4,6 +4,7 @@ namespace Dcat\Admin\Form\Field;
 
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form\Field;
+use Dcat\Admin\Support\Helper;
 use Illuminate\Support\Arr;
 
 class ListField extends Field
@@ -23,11 +24,6 @@ class ListField extends Field
      * @var int
      */
     protected $min = 0;
-
-    /**
-     * @var array
-     */
-    protected $value = [''];
 
     /**
      * Set Max list size.
@@ -62,13 +58,13 @@ class ListField extends Field
      *
      * @param array $data
      *
-     * @return void
+     * @return array
      */
     public function formatFieldData($data)
     {
         $this->data = $data;
 
-        return Arr::get($data, $this->column, $this->value);
+        return Helper::array(Arr::get($data, $this->column, $this->value));
     }
 
     /**
@@ -122,7 +118,7 @@ class ListField extends Field
     /**
      * {@inheritdoc}
      */
-    protected function setupScript()
+    protected function addScript()
     {
         $value = old($this->column, $this->value());
 
@@ -152,10 +148,10 @@ JS;
         unset($value['values'][static::DEFAULT_FLAG_NAME]);
 
         if (empty($value['values'])) {
-            return [];
+            return '[]';
         }
 
-        return array_values($value['values']);
+        return json_encode(array_values($value['values']));
     }
 
     /**
@@ -163,7 +159,7 @@ JS;
      */
     public function render()
     {
-        $this->setupScript();
+        $this->addScript();
 
         Admin::style('td .form-group {margin-bottom: 0 !important;}');
 

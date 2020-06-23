@@ -362,17 +362,17 @@
     },
     {
         "name": "dcat/laravel-admin",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
+        "version": "1.5.2",
+        "version_normalized": "1.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/jqhph/dcat-admin.git",
-            "reference": "75230fe82d842aff373d28465fbb380ca8e06854"
+            "reference": "1cd5236fb42b63bac5e1c598cacd36dd955963b1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/75230fe82d842aff373d28465fbb380ca8e06854",
-            "reference": "75230fe82d842aff373d28465fbb380ca8e06854",
+            "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/1cd5236fb42b63bac5e1c598cacd36dd955963b1",
+            "reference": "1cd5236fb42b63bac5e1c598cacd36dd955963b1",
             "shasum": "",
             "mirrors": [
                 {
@@ -395,7 +395,7 @@
             "phpstan/phpstan": "^0.12.0",
             "phpunit/phpunit": "^7.5"
         },
-        "time": "2020-06-14T15:22:46+00:00",
+        "time": "2020-06-22T00:40:37+00:00",
         "type": "library",
         "extra": {
             "laravel": {
